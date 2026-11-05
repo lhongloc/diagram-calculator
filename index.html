@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trigger Settings – Diagram Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Trigger Settings – Diagram Calculator</h1>
+      <p>
+        Tính các chỉ số của timing diagram (đơn vị <strong>ms</strong>) cho 3 operating
+        mode, ở cả 2 trường hợp <span class="tag good">Good Read</span> và
+        <span class="tag bad">No Read</span>.
+      </p>
+    </header>
+
+    <main>
+      <section class="panel" id="formulas-panel">
+        <h2>Công thức tính theo từng trường hợp</h2>
+        <p class="hint">
+          Hằng số: <code>A = 20</code> (thời gian Acquisition cố định). Trường hợp đang
+          được áp dụng cho dữ liệu nhập sẽ được tô sáng.
+        </p>
+        <div id="formulas" class="formula-grid"></div>
+      </section>
+
+      <section class="panel" id="calculator">
+        <h2>Máy tính</h2>
+
+        <div class="selectors">
+          <div class="field">
+            <span class="label">Operating mode</span>
+            <div class="segmented" id="mode-tabs" role="tablist" aria-label="Operating mode"></div>
+          </div>
+          <div class="field">
+            <span class="label">Kết quả đọc</span>
+            <div class="segmented" id="outcome-tabs" role="tablist" aria-label="Outcome"></div>
+          </div>
+        </div>
+
+        <form id="inputs" class="inputs" autocomplete="off"></form>
+
+        <div id="case-banner" class="case-banner"></div>
+        <ol id="steps" class="steps"></ol>
+
+        <h3>Kết quả</h3>
+        <div class="table-wrap">
+          <table id="results">
+            <thead>
+              <tr>
+                <th>Chỉ số</th>
+                <th>Start (ms)</th>
+                <th>End (ms)</th>
+                <th>Duration (ms)</th>
+                <th>Cách tính</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h3>Timeline</h3>
+        <div id="timeline" class="timeline"></div>
+        <ul id="notes" class="notes"></ul>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>

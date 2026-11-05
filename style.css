@@ -1,0 +1,442 @@
+:root {
+  --bg: #f3f5f9;
+  --panel: #ffffff;
+  --border: #d9dfea;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --good: #15803d;
+  --good-bg: #e8f6ec;
+  --bad: #7e22ce;
+  --bad-bg: #f3e8fd;
+  --warn: #b45309;
+  --acq: #3b82f6;
+  --proc: #f59e0b;
+  --op: #16a34a;
+  --delay: #0ea5e9;
+  --busy: #22c55e;
+  --trigger: #374151;
+  --timeout: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.45;
+}
+
+.page-header {
+  padding: 20px 32px 8px;
+}
+
+.page-header h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+
+.page-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+main {
+  display: grid;
+  gap: 20px;
+  padding: 12px 32px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+}
+
+.panel h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.panel h3 {
+  margin: 22px 0 8px;
+  font-size: 15px;
+}
+
+.hint {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12.5px;
+  background: #f1f4f9;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.tag {
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.tag.good {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+.tag.bad {
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+/* formulas */
+.formula-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.formula-col h3 {
+  margin: 0;
+  font-size: 15px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--primary);
+}
+
+.formula-col .vars {
+  margin: 6px 0 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.formula-card {
+  border: 1px solid var(--border);
+  border-left-width: 5px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  transition: box-shadow 0.15s, background 0.15s;
+}
+
+.formula-card.goodRead {
+  border-left-color: var(--good);
+}
+
+.formula-card.noRead {
+  border-left-color: var(--bad);
+}
+
+.formula-card header {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.case-id {
+  font-weight: 700;
+  font-size: 12px;
+  background: #e5e7eb;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.case-title {
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.formula-card ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+}
+
+.formula-card li {
+  margin: 2px 0;
+}
+
+.formula-card.active {
+  box-shadow: 0 0 0 2px var(--primary);
+  background: #eff6ff;
+}
+
+.formula-card.active .case-id {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* selectors & inputs */
+.selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 10px 0 14px;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.segmented button {
+  border: 0;
+  background: #fff;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  border-right: 1px solid var(--border);
+}
+
+.segmented button:last-child {
+  border-right: 0;
+}
+
+.segmented button:hover {
+  background: #f3f4f6;
+}
+
+.segmented button.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.segmented button.goodRead.active {
+  background: var(--good);
+}
+
+.segmented button.noRead.active {
+  background: var(--bad);
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+}
+
+.input-field input {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.input-field input:focus {
+  outline: 2px solid var(--primary);
+  border-color: transparent;
+}
+
+.input-field small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 300px;
+}
+
+.input-field.muted input {
+  background: #f3f4f6;
+  color: var(--muted);
+}
+
+/* case banner & steps */
+.case-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 5px solid var(--primary);
+  background: #eff6ff;
+}
+
+.case-banner.goodRead {
+  background: var(--good-bg);
+  border-left-color: var(--good);
+}
+
+.case-banner.noRead {
+  background: var(--bad-bg);
+  border-left-color: var(--bad);
+}
+
+.case-banner.invalid {
+  background: #fef3c7;
+  border-left-color: var(--warn);
+}
+
+.steps {
+  margin: 10px 0 0;
+  padding-left: 22px;
+  font-size: 13.5px;
+}
+
+.steps li {
+  margin: 3px 0;
+}
+
+/* table */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background: #f3f4f6;
+  font-size: 13px;
+}
+
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4) {
+  font-variant-numeric: tabular-nums;
+}
+
+tr.kind-outcome td:first-child {
+  font-weight: 700;
+}
+
+tr.kind-busy td:first-child {
+  color: var(--good);
+  font-weight: 600;
+}
+
+/* timeline */
+.timeline svg {
+  width: 100%;
+  height: auto;
+  background: #fafbfd;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.timeline .grid {
+  stroke: #e5e7eb;
+}
+
+.timeline .tick {
+  font-size: 11px;
+  fill: var(--muted);
+}
+
+.timeline .lane-label {
+  font-size: 12px;
+  fill: #374151;
+}
+
+.timeline .bar-text {
+  font-size: 11px;
+  fill: #111827;
+  pointer-events: none;
+}
+
+.bar-acquisition {
+  fill: rgba(59, 130, 246, 0.25);
+  stroke: var(--acq);
+  stroke-width: 1.5;
+}
+
+.bar-processing {
+  fill: rgba(245, 158, 11, 0.25);
+  stroke: var(--proc);
+  stroke-width: 1.5;
+}
+
+.bar-operating {
+  fill: var(--op);
+}
+
+.bar-delay {
+  fill: var(--delay);
+}
+
+.bar-busy {
+  fill: rgba(34, 197, 94, 0.35);
+  stroke: var(--busy);
+  stroke-width: 1.5;
+}
+
+.bar-input {
+  fill: var(--trigger);
+}
+
+.timeline line.marker {
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.timeline .marker-outcome {
+  stroke: var(--good);
+  fill: var(--good);
+}
+
+.timeline svg.outcome-noRead .marker-outcome {
+  stroke: var(--bad);
+  fill: var(--bad);
+}
+
+.timeline .marker-trigger {
+  stroke: var(--trigger);
+  fill: var(--trigger);
+}
+
+.timeline .marker-timeout {
+  stroke: var(--timeout);
+  fill: var(--timeout);
+}
+
+.timeline text.marker-text {
+  font-size: 11px;
+  font-weight: 600;
+  stroke: none;
+}
+
+.notes {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
